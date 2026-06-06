@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金谷直志 | Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Outfit:wght@300;400;600;700;800&family=Yuji+Syuku&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root {
+  --bg:         #0a0602;
+  --bg2:        #130a04;
+  --card:       #f2e8d2;
+  --card-2:     #e8dcc0;
+  --card-sub:   #e0d2b0;
+  --accent:     #bf7e24;
+  --accent-lt:  #e0ac48;
+  --line:       #b08848;
+  --muted:      #c09858;
+  --ink:        #faf4e8;
+  --card-text:  #3a2510;
+  --card-head:  #1a0c04;
+
+  --a04: rgba(191,126,36,.04);
+  --a10: rgba(191,126,36,.10);
+  --a15: rgba(191,126,36,.15);
+  --a25: rgba(191,126,36,.25);
+  --a40: rgba(191,126,36,.40);
+  --a55: rgba(191,126,36,.55);
+
+  --font-brush: 'Yuji Syuku', serif;
+  --font-min:  'Shippori Mincho', serif;
+  --font-jp:   'Zen Kaku Gothic New', sans-serif;
+  --font-en:   'Outfit', sans-serif;
+
+  --max-w:  1080px;
+  --px:     36px;
+  --px-sp:  18px;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body { font-family:var(--font-jp); background:var(--bg); color:var(--ink); line-height:1.8; overflow-x:hidden; }
+main { max-width:var(--max-w); margin:0 auto; padding:0 var(--px) 80px; position:relative; z-index:1; }
+a { color:inherit; }
+
+/* ============================================================
+   WOOD GRAIN BACKGROUND
+   ============================================================ */
+.wood-bg {
+  position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;
+}
+.wood-bg svg { width:100%; height:100%; }
+
+/* ============================================================
+   HEADER — DESKTOP
+   ============================================================ */
+.top-header {
+  position:sticky; top:0; z-index:50;
+  background:rgba(10,6,2,.92);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(176,136,72,.35);
+}
+.nav-inner {
+  max-width:var(--max-w); margin:0 auto;
+  padding:0 var(--px);
+  display:flex; align-items:center; justify-content:space-between;
+  height:60px;
+}
+.logo {
+  display:flex; align-items:center; gap:12px;
+  font-family:var(--font-en); font-weight:800; font-size:.88rem;
+  letter-spacing:.12em; text-decoration:none; color:var(--ink);
+}
+.logo-ring {
+  width:32px; height:32px; flex-shrink:0;
+  background:center/cover url('nenrin.png') no-repeat;
+  filter:invert(1) opacity(.75);
+  border-radius:50%;
+  animation:slowSpin 40s linear infinite;
+}
+.top-nav {
+  position:relative;
+  display:flex; gap:0;
+}
+.nav-indicator {
+  position:absolute; bottom:4px; left:0;
+  height:2px; background:var(--accent);
+  border-radius:2px;
+  transition:left .3s cubic-bezier(.4,0,.2,1), width .3s cubic-bezier(.4,0,.2,1);
+  pointer-events:none;
+}
+.top-nav-btn {
+  font-family:var(--font-min); font-size:.95rem; font-weight:500;
+  letter-spacing:.1em; color:var(--muted);
+  background:none; border:none; padding:8px 20px 16px;
+  cursor:pointer; transition:color .2s; white-space:nowrap;
+  position:relative;
+}
+.top-nav-btn:hover { color:var(--ink); }
+.top-nav-btn.active { color:var(--ink); }
+
+/* Hint bar */
+.nav-hint {
+  position:sticky; top:60px; z-index:49;
+  background:var(--bg2); border-bottom:1px solid var(--a40);
+  padding:6px; text-align:center;
+  font-family:var(--font-en); font-size:.68rem; font-weight:600;
+  letter-spacing:.12em; color:var(--accent-lt);
+}
+
+/* ============================================================
+   MOBILE NAV
+   ============================================================ */
+.mob-nav {
+  display:none;
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  background:rgba(10,6,2,.96);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(176,136,72,.3);
+  padding-top:env(safe-area-inset-top);
+}
+.mob-inner { display:flex; align-items:stretch; }
+.mob-logo {
+  display:flex; align-items:center; gap:8px;
+  padding:0 14px; height:54px; flex-shrink:0;
+  border-right:1px solid rgba(176,136,72,.25);
+  font-family:var(--font-en); font-weight:800; font-size:.78rem;
+  letter-spacing:.08em;
+}
+.mob-logo-ring {
+  width:22px; height:22px; flex-shrink:0;
+  background:center/cover url('nenrin.png') no-repeat;
+  filter:invert(1) opacity(.7);
+  border-radius:50%;
+  animation:slowSpin 40s linear infinite;
+}
+.mob-btn {
+  flex:1; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:3px;
+  min-height:54px; padding:6px 4px;
+  background:none; border:none; cursor:pointer;
+  font-family:var(--font-min); font-size:.72rem; letter-spacing:.06em;
+  color:var(--muted); transition:color .15s, background .15s;
+}
+.mob-btn.active { color:var(--accent-lt); }
+.mob-btn:active { background:var(--a10); }
+.mob-btn svg { flex-shrink:0; }
+
+/* ============================================================
+   PAGE SYSTEM
+   ============================================================ */
+.page { display:none; }
+.page.active { display:block; animation:pageIn .35s ease both; }
+
+/* ============================================================
+   SCROLL REVEAL
+   Content visible by default; animation only fires when JS adds .js-ready
+   ============================================================ */
+.reveal { /* no hidden state — visible in screenshots & no-JS */ }
+.js-ready .reveal { animation: revealUp .6s ease both; }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  position:relative; min-height:auto;
+  display:flex; flex-direction:column; justify-content:center;
+  padding:60px 0 40px;
+}
+.hero-rings-wrap {
+  position:fixed; right:calc(50% - 420px); top:120px;
+  width:440px; height:440px;
+  pointer-events:none;
+  z-index:0;
+}
+.hero-rings {
+  position:absolute; inset:0;
+  background:center/cover url('nenrin.png') no-repeat;
+  filter:invert(1);
+  opacity:.18;
+  animation:slowSpin 60s linear infinite;
+  pointer-events:none;
+}
+
+.hero-rings-sm {
+  position:absolute; left:-120px; bottom:-80px;
+  width:320px; height:320px;
+  background:center/cover url('nenrin.png') no-repeat;
+  filter:invert(1);
+  opacity:.07;
+  animation:slowSpin 90s linear infinite reverse;
+  pointer-events:none;
+}
+.hero-tag {
+  font-family:var(--font-en); font-size:.68rem; font-weight:700;
+  letter-spacing:.3em; text-transform:uppercase; color:var(--accent);
+  display:flex; align-items:center; gap:10px; margin-bottom:18px;
+}
+.hero-tag::before {
+  content:''; width:24px; height:1.5px;
+  background:linear-gradient(90deg, var(--accent), transparent);
+  flex-shrink:0;
+}
+.hero-name {
+  font-family:var(--font-brush); font-weight:400;
+  font-size:clamp(2.8rem, 7vw, 5.2rem);
+  line-height:1.1; letter-spacing:.04em; color:var(--ink);
+  position:relative; z-index:1;
+}
+.hero-name-en {
+  margin-top:10px;
+  font-family:var(--font-en); font-size:.85rem; font-weight:600;
+  letter-spacing:.22em; text-transform:uppercase; color:var(--muted);
+}
+.hero-rule {
+  width:48px; height:2px; margin:28px 0;
+  background:linear-gradient(90deg, var(--accent), transparent);
+}
+.hero-desc {
+  font-size:.97rem; line-height:2.1; color:var(--muted);
+  max-width:480px; position:relative; z-index:1;
+}
+
+/* ============================================================
+   SECTION
+   ============================================================ */
+.sec { padding:72px 0; }
+.sec + .sec { border-top:1px solid rgba(176,136,72,.25); }
+.eyebrow {
+  display:flex; align-items:center; gap:10px;
+  margin-bottom:12px;
+  font-family:var(--font-en); font-size:.65rem; font-weight:700;
+  letter-spacing:.3em; text-transform:uppercase; color:var(--accent);
+}
+.eyebrow::before { content:''; width:52px; height:2px; background:linear-gradient(90deg, var(--accent), transparent); flex-shrink:0; }
+.sec-title {
+  font-family:var(--font-brush); font-weight:400;
+  font-size:clamp(1.8rem, 4vw, 2.6rem);
+  line-height:1.2; letter-spacing:.04em; color:var(--ink);
+}
+.lead {
+  margin-top:14px; font-size:.95rem; line-height:2; color:var(--muted);
+}
+
+/* ============================================================
+   SERVICE CARDS
+   ============================================================ */
+.svc-grid {
+  display:grid; grid-template-columns:repeat(2,1fr);
+  gap:14px; margin-top:36px;
+}
+.svc-card {
+  position:relative; overflow:hidden;
+  padding:30px 26px 26px;
+  background:var(--card);
+  border:1px solid rgba(176,136,72,.5);
+  border-radius:10px;
+  transition:transform .25s, box-shadow .25s, border-color .25s;
+}
+/* Wood grain stripe on cards */
+.svc-card::before {
+  content:''; position:absolute; inset:0;
+  background:repeating-linear-gradient(
+    90deg,
+    rgba(0,0,0,.018) 0px, rgba(0,0,0,.018) 1px,
+    transparent 1px, transparent 18px
+  );
+  pointer-events:none; border-radius:10px;
+}
+.svc-card::after {
+  content:''; position:absolute; inset:0; border-radius:10px;
+  background:linear-gradient(135deg, rgba(255,220,140,.06) 0%, transparent 55%);
+  pointer-events:none;
+}
+.svc-card:hover {
+  transform:translateY(-5px);
+  border-color:var(--a55);
+  box-shadow:0 16px 48px rgba(0,0,0,.4), 0 0 0 1px var(--a25), 0 4px 20px rgba(191,126,36,.15);
+}
+.svc-num {
+  position:absolute; top:12px; right:16px;
+  font-family:var(--font-en); font-weight:800; font-size:4rem;
+  line-height:1; letter-spacing:-.04em;
+  color:rgba(191,126,36,.06); pointer-events:none;
+  user-select:none;
+}
+.svc-card h3 {
+  font-family:var(--font-jp); font-weight:900; font-size:1rem;
+  letter-spacing:.02em; color:var(--card-head); margin-bottom:8px;
+  position:relative; z-index:1;
+}
+.svc-card p {
+  font-size:.87rem; line-height:1.85; color:var(--card-text);
+  position:relative; z-index:1;
+}
+
+/* ============================================================
+   WORK CARDS
+   ============================================================ */
+.work-list { margin-top:28px; display:flex; flex-direction:column; gap:16px; }
+.work-card {
+  overflow:hidden; border-radius:12px;
+  background:var(--card);
+  border:1px solid rgba(176,136,72,.5);
+  transition:border-color .25s, box-shadow .25s;
+}
+.work-card:hover { border-color:var(--a55); box-shadow:0 8px 36px rgba(0,0,0,.35), 0 0 0 1px var(--a25); }
+.work-img {
+  display:block; width:100%; max-height:280px;
+  padding:24px; object-fit:contain;
+  background:#100804; border-bottom:1px solid rgba(176,136,72,.35);
+}
+/* Work card composite */
+.work-img-composite {
+  background:center/cover url('meishi-haikei.png') #1a1c20;
+  padding:32px 20px;
+  border-bottom:1px solid rgba(176,136,72,.35);
+  text-align:center;
+}
+.work-img-card {
+  display:inline-block; width:78%;
+  filter:drop-shadow(0 10px 28px rgba(0,0,0,.65));
+}
+.work-placeholder {
+  display:flex; align-items:center; justify-content:center;
+  height:160px;
+  font-family:var(--font-en); font-weight:800; font-size:.82rem;
+  letter-spacing:.14em;
+  border-bottom:1px solid rgba(176,136,72,.35);
+}
+.work-placeholder.amber { background:linear-gradient(135deg,#2a1504,#1c1008); color:var(--accent); }
+.work-placeholder.stripe {
+  background:repeating-linear-gradient(45deg,#1a0e06,#1a0e06 8px,#1e1208 8px,#1e1208 10px);
+  color:var(--muted);
+}
+.work-body { padding:22px 24px; }
+.work-tag {
+  display:inline-block; padding:3px 12px;
+  font-family:var(--font-en); font-size:.63rem; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase;
+  color:var(--accent); background:var(--a10);
+  border:1px solid var(--a25); border-radius:999px;
+}
+.work-body h3 {
+  margin:10px 0 6px;
+  font-family:var(--font-jp); font-weight:900; font-size:1.02rem;
+  letter-spacing:.01em; color:var(--card-head);
+}
+.work-body p { font-size:.88rem; line-height:1.8; color:var(--card-text); }
+.work-meta {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  margin-top:16px; padding-top:16px;
+  border-top:1px solid rgba(176,136,72,.3);
+}
+.wm { padding:0 16px; }
+.wm:first-child { padding-left:0; }
+.wm:not(:last-child) { border-right:1px solid rgba(176,136,72,.3); }
+.wm-label {
+  font-family:var(--font-en); font-size:.6rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--muted); margin-bottom:3px;
+}
+.wm-val { font-size:.88rem; font-weight:700; color:var(--card-head); }
+
+/* ============================================================
+   PRICE
+   ============================================================ */
+.price-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:14px; margin-top:36px;
+}
+.price-card {
+  padding:24px 20px;
+  background:var(--card);
+  border:1px solid rgba(176,136,72,.5);
+  border-radius:10px;
+  transition:.25s;
+  position:relative; overflow:hidden;
+}
+.price-card::before {
+  content:''; position:absolute; inset:0; border-radius:10px;
+  background:repeating-linear-gradient(
+    90deg, rgba(0,0,0,.018) 0px, rgba(0,0,0,.018) 1px,
+    transparent 1px, transparent 18px
+  );
+  pointer-events:none;
+}
+.price-card:hover {
+  transform:translateY(-4px);
+  border-color:var(--a55);
+  box-shadow:0 12px 40px rgba(0,0,0,.3), 0 0 0 1px var(--a25);
+}
+.ptitle {
+  padding-bottom:12px; margin-bottom:12px;
+  font-family:var(--font-jp); font-weight:900; font-size:.98rem;
+  letter-spacing:.02em; color:var(--card-head);
+  border-bottom:1px solid rgba(176,136,72,.35);
+  position:relative;
+}
+.subbox {
+  margin-top:10px; padding:13px 13px;
+  background:var(--card-sub);
+  border:1px solid rgba(176,136,72,.4);
+  border-radius:7px;
+  position:relative;
+}
+.sub-pill {
+  display:inline-block; padding:2px 11px;
+  font-family:var(--font-en); font-size:.65rem; font-weight:700;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:#0a0602; background:var(--accent); border-radius:999px;
+  margin-bottom:8px;
+}
+.sub-price {
+  font-family:var(--font-en); font-size:1.5rem; font-weight:800;
+  letter-spacing:-.02em; color:var(--accent);
+  margin-bottom:9px;
+}
+.sub-price small { font-size:.74rem; font-weight:400; letter-spacing:0; color:var(--muted); }
+.sub-list { list-style:none; }
+.sub-list li {
+  padding:5px 0; font-size:.82rem; color:var(--card-text);
+  border-bottom:1px solid rgba(176,136,72,.25);
+  display:flex; gap:6px; align-items:baseline;
+}
+.sub-list li:last-child { border-bottom:none; padding-bottom:0; }
+.sub-list li::before { content:"›"; color:var(--accent); font-weight:900; flex-shrink:0; }
+.price-note {
+  margin-top:18px; font-size:.78rem; line-height:1.85; color:var(--muted);
+}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact-box {
+  margin-top:28px; border-radius:14px; overflow:hidden;
+  border:1px solid rgba(176,136,72,.4);
+}
+.contact-top {
+  position:relative; overflow:hidden;
+  padding:60px 44px; text-align:center;
+  background:var(--card);
+}
+.contact-rings {
+  position:absolute; top:50%; right:-60px;
+  width:280px; height:280px; transform:translateY(-50%);
+  background:center/cover url('nenrin.png') no-repeat;
+  opacity:.10; pointer-events:none;
+  animation:slowSpin 60s linear infinite;
+}
+.contact-rings-l {
+  position:absolute; top:50%; left:-80px;
+  width:220px; height:220px; transform:translateY(-50%);
+  background:center/cover url('nenrin.png') no-repeat;
+  opacity:.08; pointer-events:none;
+  animation:slowSpin 80s linear infinite reverse;
+}
+.contact-head {
+  font-family:var(--font-min); font-weight:700; font-size:1.6rem;
+  letter-spacing:.04em; color:var(--card-head);
+  position:relative; z-index:1;
+}
+.contact-sub {
+  margin:12px auto 30px; font-size:.93rem; line-height:2;
+  color:#3a2510; max-width:360px;
+  position:relative; z-index:1;
+}
+.clinks {
+  display:flex; justify-content:center; flex-wrap:wrap;
+  gap:12px; position:relative; z-index:1;
+}
+.clink {
+  display:flex; align-items:center; gap:10px;
+  min-width:200px; padding:14px 26px;
+  font-size:.88rem; font-weight:700; text-decoration:none;
+  color:var(--ink); background:var(--bg);
+  border:1px solid rgba(176,136,72,.5); border-radius:9px;
+  transition:.2s;
+}
+.clink:hover { color:var(--bg); background:var(--accent); border-color:var(--accent); }
+.contact-foot {
+  padding:14px 32px;
+  background:var(--bg2); border-top:1px solid rgba(176,136,72,.25);
+}
+.contact-foot p { font-size:.8rem; color:var(--muted); }
+
+/* ============================================================
+   PAGE NAV
+   ============================================================ */
+.page-nav {
+  display:flex; justify-content:center; flex-wrap:wrap; gap:12px;
+  padding:40px var(--px) 48px;
+  border-top:1px solid rgba(255,255,255,.07);
+  position:relative; z-index:1;
+}
+.pnav-btn {
+  display:flex; align-items:center; justify-content:space-between;
+  width:220px; padding:16px 20px;
+  background:rgba(242,232,210,.82); border:1px solid rgba(176,136,72,.5);
+  border-radius:10px; cursor:pointer; text-decoration:none;
+  transition:.2s;
+}
+.pnav-btn:hover { background:var(--card-2); border-color:var(--a55); }
+.pnav-label {
+  display:block; margin-bottom:3px;
+  font-family:var(--font-en); font-size:.65rem; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--card-text);
+}
+.pnav-title {
+  font-family:var(--font-min); font-size:1.05rem; letter-spacing:.06em; color:var(--card-head);
+}
+.pnav-arrow { font-size:1.1rem; color:var(--accent); transition:.2s; flex-shrink:0; margin-left:8px; }
+.pnav-btn:hover .pnav-arrow { transform:translateX(4px); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  position:relative; z-index:1; max-width:var(--max-w); margin:0 auto;
+  padding:28px var(--px) 56px; text-align:center;
+  font-size:.8rem; color:var(--muted);
+  border-top:1px solid rgba(176,136,72,.25);
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes slowSpin { to { transform:rotate(360deg); } }
+@keyframes slowSpinCenter { to { transform:translateY(-50%) rotate(360deg); } }
+@keyframes pageIn {
+  from { transform: translateX(20px); }
+  to   { transform: none; }
+}
+@keyframes pageInLeft {
+  from { transform: translateX(-20px); }
+  to   { transform: none; }
+}
+@keyframes fadeDown {
+  from { transform: translateY(-8px); }
+  to   { transform: none; }
+}
+@keyframes revealUp {
+  from { transform: translateY(18px); }
+  to   { transform: none; }
+}
+@keyframes rippleAnim {
+  from { transform:scale(0); opacity:.5; }
+  to   { transform:scale(5); opacity:0; }
+}
+
+.page.active        { animation: pageIn    .38s cubic-bezier(.25,.46,.45,.94) both; }
+.page.active.to-prev{ animation: pageInLeft .38s cubic-bezier(.25,.46,.45,.94) both; }
+
+@keyframes ringsEnter {
+  /* 0-33% = 0-1s: hold at center */
+  0%   { transform: translate(-200px, calc(50vh - 340px)); animation-timing-function:linear; }
+  33%  { transform: translate(-200px, calc(50vh - 340px)); animation-timing-function:cubic-bezier(.18,.85,.28,1); }
+  /* 33-100% = 1-3s: move to fixed position */
+  100% { transform: none; }
+}
+.hero-rings-wrap {
+  position:fixed; right:calc(50% - 420px); top:120px;
+  width:440px; height:440px;
+  pointer-events:none; z-index:0;
+  animation: ringsEnter 3s linear both;
+}
+/* Ripple */
+.ripple-host { position:relative; overflow:hidden; }
+.ripple-dot {
+  position:absolute; border-radius:50%;
+  background:rgba(255,255,255,.22);
+  pointer-events:none; transform:scale(0);
+  animation: rippleAnim .65s linear forwards;
+}
+
+/* 3D card tilt */
+.svc-grid, .price-grid { perspective:900px; }
+.svc-card, .price-card { transform-style:preserve-3d; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:760px) {
+  .top-header { display:none; }
+  .mob-nav { display:block; }
+  body { padding-top:54px; }
+  .nav-hint { top:54px; }
+  main { padding:0 var(--px-sp) 48px; }
+  .sec { padding:48px 0; }
+  .hero { min-height:auto; padding:48px 0 40px; }
+  .hero-rings-wrap { width:260px; height:260px; right:-30px; top:100px; }
+  .hero-rings-sm { display:none; }
+  .hero-name { font-size:clamp(2.2rem,10vw,3rem); }
+  .svc-grid { grid-template-columns:1fr; }
+  .price-grid { grid-template-columns:1fr; }
+  .work-meta { grid-template-columns:1fr; }
+  .wm:not(:last-child) { border-right:none; border-bottom:1px solid rgba(176,136,72,.3); padding-right:0; padding-bottom:12px; margin-bottom:4px; }
+  .wm { padding:4px 0; }
+  .wm:first-child { padding-left:0; }
+  .contact-top { padding:40px 22px; }
+  .contact-foot { padding:12px 20px; }
+  .page-nav { padding:32px var(--px-sp) 40px; gap:10px; }
+  .pnav-btn { width:calc(50% - 6px); padding:14px 14px; }
+  .pnav-title { font-size:.9rem; }
+  footer { padding:24px var(--px-sp) 48px; }
+}
+@media (min-width:761px) and (max-width:920px) {
+  .price-grid { grid-template-columns:repeat(2,1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- Wood grain background -->
+<div class="wood-bg" aria-hidden="true">
+  <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="wg1" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.005 1.2" numOctaves="8" seed="5" result="n"/>
+        <feColorMatrix in="n" type="matrix"
+          values="0.55 0 0 0 0.20
+                  0.26 0 0 0 0.09
+                  0.06 0 0 0 0.02
+                  0    0 0 0 0.50"/>
+      </filter>
+      <filter id="wg2" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+        <feTurbulence type="turbulence" baseFrequency="0.0018 0.08" numOctaves="4" seed="17" result="n"/>
+        <feColorMatrix in="n" type="matrix"
+          values="0.40 0 0 0 0.18
+                  0.20 0 0 0 0.08
+                  0.03 0 0 0 0.01
+                  0    0 0 0 0.42"/>
+      </filter>
+      <filter id="wg3" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.0012 0.025" numOctaves="3" seed="33" result="n"/>
+        <feColorMatrix in="n" type="matrix"
+          values="0.32 0 0 0 0.12
+                  0.15 0 0 0 0.05
+                  0    0 0 0 0.01
+                  0    0 0 0 0.30"/>
+      </filter>
+    </defs>
+    <rect width="100%" height="100%" filter="url(#wg1)"/>
+    <rect width="100%" height="100%" filter="url(#wg2)"/>
+    <rect width="100%" height="100%" filter="url(#wg3)"/>
+  </svg>
+</div>
+
+<!-- Fixed rings decoration (all pages) -->
+<div class="hero-rings-wrap" aria-hidden="true">
+  <div class="hero-rings"></div>
+</div>
+
+<!-- DESKTOP HEADER -->
+<header class="top-header">
+  <div class="nav-inner">
+    <a class="logo" href="#">
+      <div class="logo-ring" aria-hidden="true"></div>
+      NAOSHI KANAYA
+    </a>
+    <nav class="top-nav" id="topNav">
+      <div class="nav-indicator" id="navInd"></div>
+      <button class="top-nav-btn active" data-page="home">ホーム</button>
+      <button class="top-nav-btn" data-page="works">実績・料金</button>
+      <button class="top-nav-btn" data-page="contact">お問い合わせ</button>
+    </nav>
+  </div>
+</header>
+<div class="nav-hint" id="navHint">上のメニューをクリックするとページが切り替わります</div>
+
+<!-- PAGE: HOME -->
+<div id="page-home" class="page active">
+  <main>
+    <section class="hero">
+      <h1 class="hero-name reveal" style="animation-delay:.08s">金谷 直志</h1>
+      <p class="hero-name-en reveal" style="animation-delay:.15s">Naoshi Kanaya</p>
+      <p class="hero-desc reveal" style="animation-delay:.30s">
+        2000年3月生まれ。名刺・ロゴ・ホームページの制作をしています。<br>
+        「作った後」まで考えた、丁寧なものづくりを心がけています。
+      </p>
+    </section>
+
+    <section class="sec">
+      <div class="eyebrow reveal">What I can do</div>
+      <h2 class="sec-title reveal" style="animation-delay:.07s">対応可能</h2>
+      <p class="lead reveal" style="animation-delay:.14s">
+        今はまだ実績を積み重ねている最中です。<br>
+        だからこそ一件一件に丁寧に向き合い、<br>
+        できることを少しずつ増やしていきたいと思っています。
+      </p>
+      <div class="svc-grid">
+        <article class="svc-card reveal" style="animation-delay:.20s">
+          <div class="svc-num">01</div>
+          <h3>名刺・ロゴ</h3>
+          <p>お店や会社の「顔」になる名刺やロゴを、ヒアリングから丁寧にデザインします。はじめての方や個人事業主様もご相談ください。</p>
+        </article>
+        <article class="svc-card reveal" style="animation-delay:.28s">
+          <div class="svc-num">02</div>
+          <h3>ホームページ</h3>
+          <p>会社案内・店舗紹介・お問い合わせまで。スマホ対応・SEO対策も行います。</p>
+        </article>
+        <article class="svc-card reveal" style="animation-delay:.36s">
+          <div class="svc-num">03</div>
+          <h3>資料作成</h3>
+          <p>Excelでの書類づくりもお任せください。契約書・明細書など、業務で使う資料を見やすく整えて作成します。</p>
+        </article>
+        <article class="svc-card reveal" style="animation-delay:.44s">
+          <div class="svc-num">04</div>
+          <h3>ITまわりの相談</h3>
+          <p>「何から始めれば？」「何が必要？」の段階から、なんでもご相談に乗ります。パソコンや機器の設定もお手伝いします。</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <nav class="page-nav" aria-label="ページナビゲーション">
+    <button class="pnav-btn" data-page="works">
+      <div><span class="pnav-label">Next</span><span class="pnav-title">実績・料金</span></div>
+      <span class="pnav-arrow" aria-hidden="true">→</span>
+    </button>
+    <button class="pnav-btn" data-page="contact">
+      <div><span class="pnav-label">Next</span><span class="pnav-title">お問い合わせ</span></div>
+      <span class="pnav-arrow" aria-hidden="true">→</span>
+    </button>
+  </nav>
+  <footer>© 2026 Naoshi Kanaya — Portfolio</footer>
+</div>
+
+<!-- PAGE: WORKS & PRICE -->
+<div id="page-works" class="page">
+  <main>
+    <section class="sec">
+      <div class="eyebrow reveal">Works</div>
+      <h2 class="sec-title reveal" style="animation-delay:.07s">制作実績</h2>
+      <p class="lead reveal" style="animation-delay:.14s">少しずつですが、確かなものを積み上げていきます。</p>
+
+      <div class="work-list">
+        <article class="work-card reveal" style="animation-delay:.20s">
+          <div class="work-img-composite">
+            <img class="work-img-card" src="tamura-meishi.png" alt="株式会社田村建設 名刺デザイン">
+          </div>
+          <div class="work-body">
+            <span class="work-tag">Business Card / Design</span>
+            <h3>株式会社田村建設 様 — 名刺デザイン</h3>
+            <p>会社の雰囲気と信頼感が伝わるよう、デザインから印刷まで対応いたしました。</p>
+            <div class="work-meta">
+              <div class="wm"><div class="wm-label">制作内容</div><div class="wm-val">名刺デザイン・印刷</div></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-card reveal" style="animation-delay:.30s">
+          <div class="work-img-composite">
+            <img class="work-img-card" src="shorui.png" alt="契約書・明細書・人工計算Excel">
+          </div>
+          <div class="work-body">
+            <span class="work-tag">Document / Excel</span>
+            <h3>建設会社向け — 契約書・明細書・人工計算Excelの作成</h3>
+            <p>建築関係の契約書や明細書、人工計算表を、Excelで見やすく整えて作成しました。実務で使いやすく、見やすい書式を心がけています。</p>
+            <div class="work-meta">
+              <div class="wm"><div class="wm-label">制作内容</div><div class="wm-val">契約書・明細書・人工計算Excel</div></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-card reveal" style="animation-delay:.40s">
+          <div class="work-placeholder stripe">COMING SOON</div>
+          <div class="work-body">
+            <span class="work-tag">Website — 制作予定</span>
+            <h3>株式会社田村建設 様 — コーポレートサイト</h3>
+            <p>現在準備中。完成後、こちらに事例として掲載予定です。会社の強みと施工実績が伝わるサイトを目指します。</p>
+            <div class="work-meta">
+              <div class="wm"><div class="wm-label">制作内容</div><div class="wm-val">コーポレートサイト</div></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="eyebrow reveal">Price</div>
+      <h2 class="sec-title reveal" style="animation-delay:.07s">料金の目安</h2>
+      <p class="lead reveal" style="animation-delay:.14s">
+        内容やボリュームによって変わるので、まずはご相談ください。<br>
+        <strong style="color:var(--accent-lt);">すべて、実績への記載を条件とした価格です。</strong>
+      </p>
+
+      <div class="price-grid">
+        <div class="price-card reveal" style="animation-delay:.22s">
+          <div class="ptitle">名刺作成</div>
+          <div class="subbox">
+            <div class="sub-pill">デザイン考案</div>
+            <div class="sub-price">¥3,500<small>〜</small></div>
+            <ul class="sub-list">
+              <li>両面対応</li>
+              <li>ヒアリング</li>
+              <li>2パターン提案</li>
+              <li>修正対応</li>
+            </ul>
+          </div>
+          <div class="subbox">
+            <div class="sub-pill">印刷</div>
+            <div class="sub-price">¥1,500<small>〜</small></div>
+            <ul class="sub-list">
+              <li>100枚〜</li>
+              <li>枚数・用紙種類により変動</li>
+              <li>検品あり</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="price-card reveal" style="animation-delay:.32s">
+          <div class="ptitle">ホームページ制作</div>
+          <div class="subbox">
+            <div class="sub-pill">制作</div>
+            <div class="sub-price">¥30,000<small>〜</small></div>
+            <ul class="sub-list">
+              <li>3ページまでの基本構成から</li>
+              <li>スマホ対応</li>
+              <li>お問い合わせフォーム</li>
+              <li>公開までサポート</li>
+            </ul>
+          </div>
+          <div class="subbox">
+            <div class="sub-pill">管理費</div>
+            <div class="sub-price">¥500<small>/月〜</small></div>
+            <ul class="sub-list">
+              <li>サーバー管理・稼働の見守り</li>
+              <li>月1回の軽微な更新込み</li>
+              <li>その他の更新は別途</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="price-card reveal" style="animation-delay:.42s">
+          <div class="ptitle">ロゴ制作</div>
+          <div class="subbox">
+            <div class="sub-pill">デザイン考案</div>
+            <div class="sub-price">¥7,000<small>〜</small></div>
+            <ul class="sub-list">
+              <li>ヒアリング</li>
+              <li>デザイン案（複数提案）</li>
+              <li>各種データ納品</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <p class="price-note reveal">※ 表示は税込みの目安金額です。お支払い方法や納期は、ご相談のうえ決めさせていただきます。</p>
+    </section>
+  </main>
+
+  <nav class="page-nav" aria-label="ページナビゲーション">
+    <button class="pnav-btn" data-page="home">
+      <div><span class="pnav-label">Back</span><span class="pnav-title">ホーム</span></div>
+      <span class="pnav-arrow" aria-hidden="true">→</span>
+    </button>
+    <button class="pnav-btn" data-page="contact">
+      <div><span class="pnav-label">Next</span><span class="pnav-title">お問い合わせ</span></div>
+      <span class="pnav-arrow" aria-hidden="true">→</span>
+    </button>
+  </nav>
+  <footer>© 2026 Naoshi Kanaya — Portfolio</footer>
+</div>
+
+<!-- PAGE: CONTACT -->
+<div id="page-contact" class="page">
+  <main>
+    <section class="sec">
+      <div class="eyebrow reveal">Contact</div>
+      <h2 class="sec-title reveal" style="animation-delay:.07s">お問い合わせ</h2>
+      <p class="lead reveal" style="animation-delay:.14s">「こんなこと頼めるかな？」という段階で大丈夫です。</p>
+
+      <div class="contact-box reveal" style="animation-delay:.22s">
+        <div class="contact-top">
+          <div class="contact-rings" aria-hidden="true"></div>
+          <div class="contact-rings-l" aria-hidden="true"></div>
+          <h2 class="contact-head">まずは気軽に、ご相談から。</h2>
+          <p class="contact-sub">内容を聞かせていただいて、一緒に進め方を考えましょう。</p>
+          <div class="clinks">
+            <a class="clink" href="mailto:kanaya.work@icloud.com">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              kanaya.work@icloud.com
+            </a>
+            <a class="clink" href="tel:07090179217">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.86a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/>
+              </svg>
+              070-9017-9217
+            </a>
+          </div>
+        </div>
+        <div class="contact-foot">
+          <p>お返事は通常1〜2日以内にいたします。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="page-nav" aria-label="ページナビゲーション">
+    <button class="pnav-btn" data-page="home">
+      <div><span class="pnav-label">Back</span><span class="pnav-title">ホーム</span></div>
+      <span class="pnav-arrow" aria-hidden="true">→</span>
+    </button>
+    <button class="pnav-btn" data-page="works">
+      <div><span class="pnav-label">Back</span><span class="pnav-title">実績・料金</span></div>
+      <span class="pnav-arrow" aria-hidden="true">→</span>
+    </button>
+  </nav>
+  <footer>© 2026 Naoshi Kanaya — Portfolio</footer>
+</div>
+
+<!-- MOBILE NAV -->
+<nav class="mob-nav" aria-label="モバイルナビゲーション">
+  <div class="mob-inner">
+    <div class="mob-logo">
+      <div class="mob-logo-ring" aria-hidden="true"></div>
+      KANAYA
+    </div>
+    <button class="mob-btn active" data-page="home">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/>
+      </svg>
+      ホーム
+    </button>
+    <button class="mob-btn" data-page="works">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+      </svg>
+      実績・料金
+    </button>
+    <button class="mob-btn" data-page="contact">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+      </svg>
+      お問い合わせ
+    </button>
+  </div>
+</nav>
+
+<script>
+  /* Gate animations */
+  document.documentElement.classList.add('js-ready');
+
+  /* ---- PAGE ORDER for direction ---- */
+  const PAGE_ORDER = ['home', 'works', 'contact'];
+  let currentPage = localStorage.getItem('kp-page') || 'home';
+
+  /* ---- NAV INDICATOR ---- */
+  const navInd = document.getElementById('navInd');
+  function updateIndicator(id) {
+    const btn = document.querySelector('.top-nav [data-page="' + id + '"]');
+    if (!navInd || !btn) return;
+    const nav = document.getElementById('topNav');
+    const nr = nav.getBoundingClientRect();
+    const br = btn.getBoundingClientRect();
+    navInd.style.left  = (br.left - nr.left) + 'px';
+    navInd.style.width = br.width + 'px';
+  }
+
+  /* ---- PAGE SWITCH ---- */
+  function showPage(id) {
+    const prevIdx = PAGE_ORDER.indexOf(currentPage);
+    const nextIdx = PAGE_ORDER.indexOf(id);
+    const goBack  = nextIdx < prevIdx;
+
+    document.querySelectorAll('.page').forEach(p =>
+      p.classList.remove('active', 'to-prev'));
+    const target = document.getElementById('page-' + id);
+    if (target) {
+      target.classList.add('active');
+      if (goBack) target.classList.add('to-prev');
+    }
+    document.querySelectorAll('[data-page]').forEach(el => {
+      el.classList.toggle('active', el.dataset.page === id);
+    });
+    updateIndicator(id);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    currentPage = id;
+    localStorage.setItem('kp-page', id);
+    initTilt();
+  }
+
+  document.querySelectorAll('[data-page]').forEach(btn => {
+    btn.addEventListener('click', () => showPage(btn.dataset.page));
+  });
+
+  /* ---- 3D CARD TILT ---- */
+  function initTilt() {
+    document.querySelectorAll('.page.active .svc-card, .page.active .price-card').forEach(card => {
+      card.onmousemove = e => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width  - 0.5;
+        const y = (e.clientY - r.top)  / r.height - 0.5;
+        card.style.transform = `perspective(700px) translateY(-6px) rotateX(${-y*9}deg) rotateY(${x*9}deg)`;
+      };
+      card.onmouseleave = () => { card.style.transform = ''; };
+    });
+  }
+
+  /* ---- RIPPLE ---- */
+  function addRipple(e, el) {
+    const dot = document.createElement('span');
+    dot.className = 'ripple-dot';
+    const r = el.getBoundingClientRect();
+    const s = Math.max(r.width, r.height) * 2;
+    dot.style.cssText = `width:${s}px;height:${s}px;left:${e.clientX-r.left-s/2}px;top:${e.clientY-r.top-s/2}px`;
+    el.appendChild(dot);
+    dot.addEventListener('animationend', () => dot.remove());
+  }
+  document.querySelectorAll('.clink, .pnav-btn').forEach(el => {
+    el.classList.add('ripple-host');
+    el.addEventListener('click', e => addRipple(e, el));
+  });
+
+  /* ---- HERO ENTRANCE SEQUENCE ---- */
+  function initHeroEntrance() {
+    /* Phase 1 (0s): hide all UI — only rings visible in center */
+    const uiEls = [
+      document.querySelector('.top-header'),
+      document.getElementById('navHint'),
+    ];
+    const textEls = document.querySelectorAll(
+      '#page-home .hero-name, #page-home .hero-name-en, #page-home .hero-desc'
+    );
+    const sectionEls = document.querySelectorAll(
+      '#page-home .sec:not(.hero), #page-home .page-nav, #page-home footer'
+    );
+
+    /* Hide UI chrome immediately */
+    uiEls.forEach(el => { if (el) el.style.opacity = '0'; });
+    /* Hide hero text and sections */
+    textEls.forEach(el => { el.style.opacity = '0'; });
+    sectionEls.forEach(el => { el.style.opacity = '0'; });
+
+    /* Phase 2 (1.5s): fade UI chrome back in while rings travel */
+    setTimeout(() => {
+      uiEls.forEach(el => {
+        if (!el) return;
+        el.style.transition = 'opacity .8s ease';
+        el.style.opacity = '1';
+      });
+    }, 1500);
+
+    /* Phase 3 (3.2s): hero text emerges, sections fade in */
+    setTimeout(() => {
+      sectionEls.forEach(el => {
+        el.style.transition = 'opacity .8s ease';
+        el.style.opacity = '1';
+      });
+      textEls.forEach((el, i) => {
+        el.style.transition = `opacity 1.2s ${i * .2}s ease`;
+        el.style.opacity = '1';
+      });
+    }, 3200);
+  }
+
+  /* ---- HERO NAME: char-by-char ---- */
+  const heroName = document.querySelector('.hero-name');
+  if (heroName) {
+    const chars = heroName.textContent;
+    heroName.innerHTML = [...chars].map((ch, i) =>
+      ch === ' ' ? '&nbsp;'
+      : `<span style="display:inline-block;animation:charIn .5s ${.08 + i*.07}s ease both">${ch}</span>`
+    ).join('');
+  }
+
+  /* ---- INIT ---- */
+  const saved = localStorage.getItem('kp-page');
+  showPage((saved && document.getElementById('page-' + saved)) ? saved : 'home');
+  initHeroEntrance();
+
+  /* Touch hint */
+  if ('ontouchstart' in window) {
+    const hint = document.getElementById('navHint');
+    if (hint) hint.textContent = '上のメニューをタップするとページが切り替わります';
+  }
+</script>
+</body>
+</html>
